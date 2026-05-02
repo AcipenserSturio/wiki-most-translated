@@ -1,0 +1,15 @@
+[project]
+name = "wiki-most-translated"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "AcipenserSturio", email = "AcipenserSturio@users.noreply.github.com"},
+]
+dependencies = ["requests>=2.33.1", "tqdm>=4.67.3"]
+requires-python = "==3.14.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
