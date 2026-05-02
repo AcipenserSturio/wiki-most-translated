@@ -64,7 +64,7 @@ df = df.assign(
 )
 
 df = df[
-        ["person", "qid", "cycle_index", "birth", "death", "score"]
+        ["person", "qid", "cycle_index", "birth", "death", "score", "desc"]
     ].rename(columns={
     'person': 'label',
     'qid': 'qid',
