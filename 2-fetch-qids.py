@@ -33,19 +33,19 @@ def get_wikidata_id(title):
     return None
 
 
-with open("temp/people-lvl-5.txt") as f:
+with open("csv/people-lvl-5.txt") as f:
     titles = f.read().split("\n")
 
-with open("temp/people-lvl-4.txt") as f:
+with open("csv/people-lvl-4.txt") as f:
     titles += f.read().split("\n")
 
-with open("temp/people-lvl-3.txt") as f:
+with open("csv/people-lvl-3.txt") as f:
     titles += f.read().split("\n")
 
-with open("temp/people-100-translations.txt") as f:
+with open("csv/people-100-translations.txt") as f:
     titles += f.read().split("\n")
 
-with open("temp/people-qid.tsv") as f:
+with open("csv/people-qid.tsv") as f:
     already_done = set(map(lambda x: x.split("\t")[0], f.read().split("\n")))
 
 for title in tqdm(titles):
@@ -53,6 +53,6 @@ for title in tqdm(titles):
         continue
 
     qid = get_wikidata_id(title)
-    with open("temp/people-qid.tsv", "a") as f:
+    with open("csv/people-qid.tsv", "a") as f:
         f.write(f"{title}\t{qid}\n")
     already_done.add(title)

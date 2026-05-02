@@ -47,5 +47,5 @@ while True:
 
 print(f"Fetched {len(all_results)} entries")
 
-with open("temp/people-lvl-4.txt", "w") as f:
+with open("csv/people-lvl-4.txt", "w") as f:
     f.write("\n".join(all_results))

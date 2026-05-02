@@ -53,13 +53,20 @@ def get_metadata(wikidata_id):
     # Score
     score = len(list(filter(lambda x: x[-4:] == "wiki", entity.get("sitelinks", {}).keys())))
 
-    return str(birth), str(death), str(score)
+    # Desc
+    desc = ""
+    try:
+        desc = entity["descriptions"]["en"]["value"]
+    except Exception:
+        pass
+
+    return str(birth), str(death), str(score), desc
 
 
-with open("temp/people-qid.tsv") as f:
+with open("csv/people-qid.tsv") as f:
     titles = f.read().split("\n")
 
-with open("temp/people-qid-metadata.tsv") as f:
+with open("csv/people-qid-metadata.tsv") as f:
     already_done = set(map(lambda x: x.split("\t")[0], f.read().split("\n")))
 
 for title in tqdm(titles):
@@ -67,7 +74,8 @@ for title in tqdm(titles):
     if person in already_done:
         continue
 
-    birth, death, score = get_metadata(qid)
-    with open("temp/people-qid-metadata.tsv", "a") as f:
-        f.write("\t".join([person, qid, birth, death, score]) + "\n")
+    print(title)
+    birth, death, score, desc = get_metadata(qid)
+    with open("csv/people-qid-metadata.tsv", "a") as f:
+        f.write("\t".join([person, qid, birth, death, score, desc]) + "\n")
     already_done.add(person)

@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv("temp/people-qid-metadata.tsv", sep="\t", header=None)
+df = pd.read_csv("csv/people-qid-metadata.tsv", sep="\t", header=None)
 df = df.rename(columns={
     0: 'person',
     1: 'qid',
@@ -72,7 +72,8 @@ df = df[
     'birth': 'start',
     'death': 'end',
     'score': 'score',
+    'desc': 'desc',
 })
 
-df.to_csv("temp/most-important.csv", index=False)
+df.to_csv("csv/most-important.csv", index=False)
 print(df)
